@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full-Screen Image Background</title>
+    <style>
+        /* Reset margin and padding for HTML and body */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Style for the body to display the background image */
+        body {
+            background-image: url('result.jpg'); /* Relative path to the local image */
+            background-size: cover;    /* Scale the image to cover the screen */
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat; /* Prevent the image from repeating */
+            background-attachment: fixed; /* Fix the image during scrolling */
+        }
+    </style>
+</head>
+<body>
+    <!-- Optional: Additional content can go here -->
+</body>
+</html>
