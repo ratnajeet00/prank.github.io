@@ -1,29 +1,116 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Full-Screen Image Background</title>
-    <style>
-        /* Reset margin and padding for HTML and body */
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-        }
+    <title>MSBTE Result Viewer</title>
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-        /* Style for the body to display the background image */
-        body {
-            background-image: url('result.jpg'); /* Relative path to the local image */
-            background-size: cover;    /* Scale the image to cover the screen */
-            background-position: center; /* Center the image */
-            background-repeat: no-repeat; /* Prevent the image from repeating */
-            background-attachment: fixed; /* Fix the image during scrolling */
-        }
-    </style>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZJR9L1FM6H"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZJR9L1FM6H');
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var inputs = $(':input').keypress(function (e) {
+                if (e.which == 60 || e.which == 62) {
+                    return false;
+                } else if (e.which == 13 && (e.target.tagName != 'textarea')) {
+                    e.preventDefault();
+                    var nextInput = inputs.get(inputs.index(this) + 1);
+                    if (nextInput) {
+                        nextInput.focus();
+                    }
+                }
+            });
+
+            $('#btnPrintResult').on('click', function () {
+                var oWindow = window.open();
+                oWindow.document.write($('#divContent').html());
+                oWindow.print();
+                oWindow.close();
+                return true;
+            });
+
+            if ($("#txtAlert").val() > "") {
+                alert($("#txtAlert").val());
+                $("#txtAlert").val("");
+            }
+        });
+    </script>
 </head>
 <body>
-    <!-- Optional: Additional content can go here -->
+    <div class="container d-flex justify-content-center" style="background-color: #fff; margin-top: 0.5%; margin-bottom: 0.5%;">
+        <div class="row">
+            <div class="col-sm-2">
+                <img src="https://msbte.org.in/MSBTE_Logo/logo.png" style="height: 84px" alt="MSBTE LOGO" />
+            </div>
+            <div class="col-sm-10">
+                <h4 style="padding-top: 1px; font-family: Cinzel Decorative; font-weight: bold;" class="text-left">Maharashtra State Board of Technical Education</h4>
+                <h4 style="padding-top: 1px; margin: 0 0 0px; color: black; font-size: 19px; font-weight: 900; font-family: 'Arya', sans-serif;" class="text-left">महाराष्ट्र राज्य तंत्र शिक्षण मंडळ, मुंबई</h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3 d-lg-block d-sm-none"></div>
+        <div class="col-lg-6 col-sm-12">
+            <div class="card content" style="background-color: #FFFFDF; font-family: Calibri">
+                <div class="card-body">
+                    <div class="row mb-2">
+                        <span class="col-lg-6 col-sm-12 col-form-label" style="font-family: Calibri; font-weight: 600; text-decoration: underline">Select Enrollment No. or Seat No.</span>
+                        <div class="col-lg-6 col-sm-12">
+                            <select id="ddlEnrollOrSeatNo" class="form-select">
+                                <option selected="selected" value="0">(See Below)</option>
+                                <option value="1">Seat No</option>
+                                <option value="2">Enrollment No</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <span class="col-lg-6 col-sm-12 col-form-label" style="font-family: Calibri; font-weight: 600; text-decoration: underline">Enter Enrollment No. Or Seat No.</span>
+                        <div class="col-lg-6 col-sm-12">
+                            <input type="text" maxlength="180" id="txtEnrollOrSeatNo" title="Enter above Captcha here" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <span class="col-lg-6 col-sm-12 col-form-label" style="font-family: Calibri; font-weight: 600; text-decoration: underline">Captcha</span>
+                        <div class="col-lg-6 col-sm-12">
+                            <img id="imgCaptcha" src="captch.png" />
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <span class="col-lg-6 col-sm-12 col-form-label" style="font-family: Calibri; font-weight: 600; text-decoration: underline">Type Above Captcha Here</span>
+                        <div class="col-lg-6 col-sm-12">
+                            <input type="text" maxlength="15" id="txtCaptchaHot" title="Enter above Captcha here" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-lg-6 d-lg-block d-sm-none"></div>
+                        <div class="col-sm-6">
+                            <input type="image" id="btnShowResult" title="Click To Show Result" src="pcbtnShowResult.png" style="margin-left: -13px; float: right" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 d-lg-block d-sm-none"></div>
+    </div>
+
+    <div id="divResult">
+        <div class="row">
+            <div class="col-lg-2 col-sm-1"></div>
+            <div class="col-lg-8 col-sm-10"></div>
+            <div class="col-md-1"></div>
+        </div>
+        <div id="divContent"></div>
+    </div>
 </body>
 </html>
