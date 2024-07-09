@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
     <title>MSBTE Result Viewer</title>
     <meta http-equiv="Cache-Control" content="no-cache" />
@@ -12,7 +13,7 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZJR9L1FM6H"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+        function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'G-ZJR9L1FM6H');
     </script>
@@ -46,15 +47,19 @@
         });
     </script>
 </head>
+
 <body>
-    <div class="container d-flex justify-content-center" style="background-color: #fff; margin-top: 0.5%; margin-bottom: 0.5%;">
+    <div class="container d-flex justify-content-center"
+        style="background-color: #fff; margin-top: 0.5%; margin-bottom: 0.5%;">
         <div class="row">
             <div class="col-sm-2">
                 <img src="https://msbte.org.in/MSBTE_Logo/logo.png" style="height: 84px" alt="MSBTE LOGO" />
             </div>
             <div class="col-sm-10">
-                <h4 style="padding-top: 1px; font-family: Cinzel Decorative; font-weight: bold;" class="text-left">Maharashtra State Board of Technical Education</h4>
-                <h4 style="padding-top: 1px; margin: 0 0 0px; color: black; font-size: 19px; font-weight: 900; font-family: 'Arya', sans-serif;" class="text-left">महाराष्ट्र राज्य तंत्र शिक्षण मंडळ, मुंबई</h4>
+                <h4 style="padding-top: 1px; font-family: Cinzel Decorative; font-weight: bold;" class="text-left">
+                    Maharashtra State Board of Technical Education</h4>
+                <h4 style="padding-top: 1px; margin: 0 0 0px; color: black; font-size: 19px; font-weight: 900; font-family: 'Arya', sans-serif;"
+                    class="text-left">महाराष्ट्र राज्य तंत्र शिक्षण मंडळ, मुंबई</h4>
             </div>
         </div>
     </div>
@@ -65,7 +70,9 @@
             <div class="card content" style="background-color: #FFFFDF; font-family: Calibri">
                 <div class="card-body">
                     <div class="row mb-2">
-                        <span class="col-lg-6 col-sm-12 col-form-label" style="font-family: Calibri; font-weight: 600; text-decoration: underline">Select Enrollment No. or Seat No.</span>
+                        <span class="col-lg-6 col-sm-12 col-form-label"
+                            style="font-family: Calibri; font-weight: 600; text-decoration: underline">Select Enrollment
+                            No. or Seat No.</span>
                         <div class="col-lg-6 col-sm-12">
                             <select id="ddlEnrollOrSeatNo" class="form-select">
                                 <option selected="selected" value="0">(See Below)</option>
@@ -75,27 +82,35 @@
                         </div>
                     </div>
                     <div class="row mb-2">
-                        <span class="col-lg-6 col-sm-12 col-form-label" style="font-family: Calibri; font-weight: 600; text-decoration: underline">Enter Enrollment No. Or Seat No.</span>
+                        <span class="col-lg-6 col-sm-12 col-form-label"
+                            style="font-family: Calibri; font-weight: 600; text-decoration: underline">Enter Enrollment
+                            No. Or Seat No.</span>
                         <div class="col-lg-6 col-sm-12">
-                            <input type="text" maxlength="180" id="txtEnrollOrSeatNo" title="Enter above Captcha here" class="form-control" />
+                            <input type="text" maxlength="180" id="txtEnrollOrSeatNo" title="Enter above Captcha here"
+                                class="form-control" />
                         </div>
                     </div>
                     <div class="row mb-2">
-                        <span class="col-lg-6 col-sm-12 col-form-label" style="font-family: Calibri; font-weight: 600; text-decoration: underline">Captcha</span>
+                        <span class="col-lg-6 col-sm-12 col-form-label"
+                            style="font-family: Calibri; font-weight: 600; text-decoration: underline">Captcha</span>
                         <div class="col-lg-6 col-sm-12">
                             <img id="imgCaptcha" src="captch.png" />
                         </div>
                     </div>
                     <div class="row mb-2">
-                        <span class="col-lg-6 col-sm-12 col-form-label" style="font-family: Calibri; font-weight: 600; text-decoration: underline">Type Above Captcha Here</span>
+                        <span class="col-lg-6 col-sm-12 col-form-label"
+                            style="font-family: Calibri; font-weight: 600; text-decoration: underline">Type Above
+                            Captcha Here</span>
                         <div class="col-lg-6 col-sm-12">
-                            <input type="text" maxlength="15" id="txtCaptchaHot" title="Enter above Captcha here" class="form-control" />
+                            <input type="text" maxlength="15" id="txtCaptchaHot" title="Enter above Captcha here"
+                                class="form-control" />
                         </div>
                     </div>
                     <div class="row mb-2">
                         <div class="col-lg-6 d-lg-block d-sm-none"></div>
                         <div class="col-sm-6">
-                            <input type="image" id="btnShowResult" title="Click To Show Result" src="pcbtnShowResult.png" style="margin-left: -13px; float: right" />
+                            <input type="image" id="btnShowResult" title="Click To Show Result"
+                                src="pcbtnShowResult.png" onclick="result()" margin-left: -13px; float: right" />
                         </div>
                     </div>
                 </div>
@@ -112,5 +127,30 @@
         </div>
         <div id="divContent"></div>
     </div>
+
+
+    <script>
+        function result() {
+            // Create a new img element
+            var img = document.createElement("img");
+
+            // Set the source of the image
+            img.src = "result.jpeg"; // Replace with the actual path to your image
+
+            // Optionally set the width and height of the image
+            img.width = 300; // Set desired width
+            img.height = 200; // Set desired height
+
+            // Append the image to the body of the document
+            document.body.appendChild(img);
+
+            // Optionally, add some text
+            var text = document.createElement("p");
+            text.textContent = "YOU FAILED nala zala";
+            document.body.appendChild(text);
+        }
+
+    </script>
 </body>
+
 </html>
